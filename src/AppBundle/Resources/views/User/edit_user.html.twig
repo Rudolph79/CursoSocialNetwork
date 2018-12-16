@@ -1,0 +1,12 @@
+{% extends "AppBundle:Layouts:layout.html.twig" %}
+
+{% block content %}
+    {#{{ app.request.getSchemeAndHttpHost }}#}
+    <div class="col-sm-offset-2 col-lg-6 box-form">
+        <h2>My data</h2>
+        <hr>
+
+        {{ form_start(form, {'encrypte':'multipart/form-data'}) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

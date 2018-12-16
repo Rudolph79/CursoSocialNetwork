@@ -1,0 +1,13 @@
+#MyNetwork\BackendBundle\Entity\Users:
+#    properties:
+#        name:
+#            - NotBlank: {message: "The firstname can't be empty"}
+#        surname:
+#            - NotBlank: {message: "The surname can't be empty"}
+#        nick:
+#            - NotBlank: {message: "The nick can't be empty"}
+#        email:
+#            - NotBlank: {message: "The email can't be empty"}
+#        - Email:
+#            message: El email "{{ value }}" isn't valid
+#            checkMX: true
