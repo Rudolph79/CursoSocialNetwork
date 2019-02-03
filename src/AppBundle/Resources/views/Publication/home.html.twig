@@ -38,9 +38,7 @@
                             </p>
 
                             {% if(publication.user.id is defined) and (publication.user.id == app.user.id) %}
-                                <a href="#">
                                     <span data-id="{{ publication.id }}" class="btn-delete-pub glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </a>
                             {% endif %}
 
                             {% if(publication.document is defined) and (publication.document != null) %}
@@ -59,13 +57,31 @@
 
                             <div class="pull-right like">
                                 <span data-id="{{ publication.id }}"
-                                      class="btn-like glyphicon glyphicon-heart-empty"
+                                      class="
+                                      {% if app.user|liked(publication) == true %}
+                                        hidden
+                                      {% endif %}
+                                      btn-like glyphicon glyphicon-heart-empty"
                                       aria-hidden="true"
                                       data-toggle="tooltip"
                                       data-placement="bottom"
                                       title="Like">
                                 </span>
+
+                                <span data-id="{{ publication.id }}"
+                                      class="
+                                      {% if app.user|liked(publication) == false %}
+                                        hidden
+                                      {% endif %}
+                                      btn-unlike active glyphicon glyphicon-heart-empty"
+                                      aria-hidden="true"
+                                      data-toggle="tooltip"
+                                      data-placement="bottom"
+                                      title="Unlike">
+                                </span>
                             </div>
+
+
 
                         </div>
                         <div class="clearfix"></div>
@@ -98,6 +114,52 @@
         </div>
 
         <div class="clearfix"></div>
+
+        {% set user_stats = app.user|user_stats %}
+
+        <div class="following-data">
+            <a href="#">
+                <span class="label-stat">
+                    Following
+                </span>
+                <span class="number-stat">
+                    {{ user_stats.following }}
+                </span>
+            </a>
+        </div>
+
+        <div class="following-data">
+            <a href="#">
+                <span class="label-stat">
+                    Followers
+                </span>
+                <span class="number-stat">
+                    {{ user_stats.followers }}
+                </span>
+            </a>
+        </div>
+
+        <div class="following-data">
+            <a href="#">
+                <span class="label-stat">
+                    Publications
+                </span>
+                <span class="number-stat">
+                    {{ user_stats.publications }}
+                </span>
+            </a>
+        </div>
+
+        <div class="following-data">
+            <a href="#">
+                <span class="label-stat">
+                    Like
+                </span>
+                <span class="number-stat">
+                    {{ user_stats.likes }}
+                </span>
+            </a>
+        </div>
     </div>
 
         <div id="new-publication" class="col-lg-4 pull-right box-default">

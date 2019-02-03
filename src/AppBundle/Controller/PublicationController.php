@@ -161,7 +161,7 @@ class PublicationController extends Controller
             $flush = $em->flush();
 
             if ($flush == null) {
-                $status = 'The publication has been created';
+                $status = 'The publication has been deleted';
             } else {
                 $status = 'Error, something is going wrong';
             }

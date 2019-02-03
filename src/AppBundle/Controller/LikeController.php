@@ -37,4 +37,27 @@ class LikeController extends Controller
 
         return new Response($status);
     }
+
+    public function unlikeAction($id = null)
+    {
+        $user = $this->getUser();
+
+        $em = $this->getDoctrine()->getManager();
+        $like_repo = $em->getRepository('MyNetworkBackendBundle:Likes');
+        $like = $like_repo->findOneBy([
+            'user' => $user,
+            'publication' => $id,
+        ]);
+
+        $em->remove($like);
+        $flush = $em->flush();
+
+        if ($flush == null) {
+            $status = 'The Unlike is done';
+        } else {
+            $status = "You can\' unlike This publication";
+        }
+
+        return new Response($status);
+    }
 }

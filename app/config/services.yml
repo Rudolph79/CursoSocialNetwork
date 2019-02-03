@@ -18,6 +18,22 @@ services:
         tags:
             - { name: twig.extension }
 
+    liked.twig_extension:
+        class: AppBundle\Twig\LikedExtension
+        public: false
+        arguments:
+            $doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }
+
+    user_stats.twig_extension:
+        class: AppBundle\Twig\UserStatsExtension
+        public: false
+        arguments:
+            $doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }
+
     # default configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
